@@ -1,0 +1,11 @@
+gnuplot<<EOF
+set terminal postscript eps enhanced color "Helvetica" 38
+set size 3.5,1
+set output "cells.eps"
+#set ylabel "Intracellular activity"
+#set xlabel "Iteration"
+#122 300
+#plot 'cells.txt' using 1:21 with lines
+#plot for [i=21:28] 'cells.txt' using 1:i with lines t "".i lt i
+plot [][0:0.14]'cells.txt' using 1:21 with lines t "21", 'cells.txt' using 1:22 with lines t "22",'cells.txt' using 1:23 with lines t "23",'cells.txt' using 1:24 with lines t "24" lc 30,'cells.txt' using 1:25 with lines t "25",'cells.txt' using 1:26 with lines t "26" lc 31,'cells.txt' using 1:27 with lines t "27",'cells.txt' using 1:28 with lines t "28"
+EOF

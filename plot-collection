@@ -1,0 +1,27 @@
+#runs=`ls happiness.out.*| wc -l`
+#runs=`seq 2 2 $((runs*2))`
+#runs=`echo $runs |tr ' ' ,`
+#paste happiness.out.* | acut -f $runs |mean -l > happiness.mean
+
+gnuplot<<EOF
+set terminal postscript eps enhanced color "Helvetica" 38
+set size 3.5,1
+set output "happiness.eps"
+#set ylabel "Intracellular activity"
+#set xlabel "Iteration"
+f(n) = sprintf("happiness.out.%d", n)
+plot [][0:0.6]for [i=0:9] f(i) using 1:2 with lines t "".i
+
+#set multiplot
+#plot [][0:0.6]for [i=0:9] f(i) using 1:2 with lines lc rgb "#C2C2C2", "happiness.mean" u 0:1 w lines lt -1 lw 3 t"Mean"
+#plot [][0:0.6]for [i=10:19] f(i) using 1:2 with lines lc rgb "#52C2C2", "happiness.mean" u 0:1 w lines lt -1 lw 3 t"Mean"
+#plot [][0:0.6]for [i=20:29] f(i) using 1:2 with lines lc rgb "#C252C2", "happiness.mean" u 0:1 w lines lt -1 lw 3 t"Mean"
+#plot [][0:0.6]for [i=30:39] f(i) using 1:2 with lines lc rgb "#C2C252", "happiness.mean" u 0:1 w lines lt -1 lw 3 t"Mean"
+#plot [][0:0.6]for [i=40:49] f(i) using 1:2 with lines lc rgb "#020202", "happiness.mean" u 0:1 w lines lt -1 lw 3 t"Mean"
+#plot [][0:0.6]for [i=12:12] f(i) using 1:2 with lines lc rgb "#020802", "happiness.mean" u 0:1 w lines lt -1 lw 3 t"Mean"
+#plot [][0:0.6]for [i=13:13] f(i) using 1:2 with lines lc rgb "#323232", "happiness.mean" u 0:1 w lines lt -1 lw 3 t"Mean"
+#plot [][0:0.6]for [i=14:14] f(i) using 1:2 with lines lc rgb "#626262", "happiness.mean" u 0:1 w lines lt -1 lw 3 t"Mean"
+#plot [][0:0.6]for [i=15:15] f(i) using 1:2 with lines lc rgb "#929292", "happiness.mean" u 0:1 w lines lt -1 lw 3 t"Mean"
+#plot [][0:0.6]for [i=16:16] f(i) using 1:2 with lines lc rgb "#B2B2B2", "happiness.mean" u 0:1 w lines lt -1 lw 3 t"Mean"
+#plot [][0:0.6]for [i=17:17] f(i) using 1:2 with lines lc rgb "#BBBBBB", "happiness.mean" u 0:1 w lines lt -1 lw 3 t"Mean"
+EOF

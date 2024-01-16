@@ -1,0 +1,16 @@
+TIME=500
+FILE=output.conn.17
+for t in `seq 1 1 $TIME`; do
+ echo -n $((t*100))
+ for from in '1 0 0' '1 1 1' '1 2 2' ; do
+   echo -n " F "
+   for tox in 0 1 2 ; do 
+   for toy in 0 1 2 ; do
+    to="3 $toy $tox"
+    strength=`cat ${FILE}.$t |grep "^${from}"|grep "${to}.ex"|sed 's/.*ex.//'`
+    echo -n "$strength "
+   done
+   done
+ done
+ echo 
+done
